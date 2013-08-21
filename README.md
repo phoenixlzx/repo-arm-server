@@ -7,7 +7,7 @@ Server scripts
 
 2. `git clone https://github.com/phoenixlzx/repo-arm-server && cd repo-arm-server && npm install`
 
-3. Sync your packages, and generate pkginfo.db using lilydjwg's [archrepo2](https://geakit.com/lilydjwg/archrepo2).
+3. Sync your packages, and generate pkginfo.db using lilydjwg's [archrepo2](https://github.com/lilydjwg/archrepo2).
 
 4. Edit `config.js.example` and rename to `config.js`
 
