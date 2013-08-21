@@ -5,7 +5,7 @@ Server scripts
 
 1. Install Node.js
 
-2. `git clone https://github.com/phoenixlzx/repo-arm-server && cd repo-arm-server && npm install && mkdir -p packages`
+2. `git clone https://github.com/phoenixlzx/repo-arm-server && cd repo-arm-server && npm install`
 
 3. Sync your packages in `public/packages` directory.
 
