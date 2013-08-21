@@ -28,7 +28,7 @@ exports.search = function (req, res) {
         // Query success, return packages to client.
         res.write(
             row.pkgrepo + "|" + row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
-                + config.downloadurl + row.pkgrepo + "/os/" + row.pkgarch
+                + config.downloadurl + row.pkgrepo + "/os/" + req.query.arch
                 + row.filename.substr(row.filename.lastIndexOf("/")) + "\n"
         );
         // TODO what if package not found? currently return nothing.
