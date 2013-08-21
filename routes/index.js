@@ -13,14 +13,18 @@ exports.search = function (req, res) {
         if (err) return res.end(err);
     });
 
-    var query = 'SELECT * FROM pkginfo WHERE pkgarch="' + req.query.arch
-        + '" AND pkgname="' + req.query.pkgname + '";';
+//    var query = 'SELECT * FROM pkginfo WHERE pkgarch="' + req.query.arch
+//        + '" AND pkgname="' + req.query.pkgname + '";';
 
     // console.log(query);
-    db.each(query, function (err, row) {
+    db.each("SELECT * FROM pkginfo WHERE pkgarch=$pkgarch AND pkgname=$pkgname", {
+        $pkgarch: req.query.arch,
+        $pkgname: req.query.pkgname
+    }, function (err, row) {
         if(err) {
-            return res.end(err);
+            return (err);
         }
+        // console.log(row);
         // Query success, return packages to client.
         res.write(
             row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
