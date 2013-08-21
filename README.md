@@ -18,10 +18,11 @@ This application reads the `pkginfo.db` file, which will include all packages in
 #### Configuration
 
 ##### Nginx 
-Nginx is strongly recommended for handle HTTP requests. Edit `repo-arm.nginx.conf.example` for your environment and use it for your A.R.M HTTP services, It could also handle daily-repo services.
+Nginx is strongly recommended for handle HTTP requests. Edit `repo-arm.nginx.conf.example` for your environment and use it for your A.R.M HTTP services. It could also handle daily-repo services.
 
 ##### config.js
 `pkginfopath`: is where `pkginfo.db` file stores.
+
 `downloadurl`: URL for downloading packages, We use Nginx to handle the download service directly, so it can be different with A.R.M site url.
 
 ### Downgrade
