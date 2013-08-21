@@ -1,0 +1,11 @@
+# Static package download service.
+server {
+    listen 80;
+    server_name repo-arm-download.example.com;  # For speed consideration, we use Nginx to handle package download directly.
+    root /var/www/repo-arm/;  # Path where store the packages
+
+    location / {
+	autoindex on;
+    }
+    # @felixonmars: Expand Nginx functions here.
+}
