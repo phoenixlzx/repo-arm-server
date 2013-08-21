@@ -18,7 +18,8 @@ include all packages info under a directory.
 
 For downgrade scripts, use the search pattern:
 `/search?arch=$arch&pkgname=$pkgname`
-where `arch` can be `any`, `i686`, or `x86_64`, and `$pkgname` is __exactly__ the package name.
+where `arch` can be either `i686` or `x86_64`, and `$pkgname` is _exactly_ the package name(`any` packages will be automatically added 
+to results).
 
 Server will return results like:
 `pkgname|arch|pkgver|download-link`
