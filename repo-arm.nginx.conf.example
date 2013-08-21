@@ -1,0 +1,24 @@
+# Reverse proxy for repo-arm-server app.
+server {
+    listen 80;
+    server_name repo-arm.archlinuxcn.org;  # Your A.R.M site-url here.
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_redirect default;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+} 
+
+# Static package download service.
+server {
+    listen 80;
+    server_name repo-arm-download.archlinuxcn.org;  # For speed consideration, we use Nginx to handle package download directly.
+    root /var/www/repo-arm/;  # Path where store the packages
+
+    location / {
+	autoindex on;
+    }
+}

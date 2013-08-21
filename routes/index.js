@@ -9,7 +9,7 @@ exports.search = function (req, res) {
     // res.send('Welcome to A.R.M - Arch Rollback Machine.'); // Need to be expand later.
     // downgrade search pattern: /?a=$arch&q=%5E$term%24$repos
     // May use our own simpler pattern: /search?arch=$arch&pkgname=$pkgname
-    var db = new sqlite3.Database('./pkginfo.db', sqlite3.OPEN_READONLY, function (err) {
+    var db = new sqlite3.Database(config.pkginfopath + '/pkginfo.db', sqlite3.OPEN_READONLY, function (err) {
         if (err) return res.end(err);
     });
 
@@ -27,8 +27,9 @@ exports.search = function (req, res) {
         // console.log(row);
         // Query success, return packages to client.
         res.write(
-            row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
-                + config.downloadurl + "/packages" + row.filename.substr(row.filename.lastIndexOf("/")) + "\n"
+            row.pkgrepo + "|" + row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
+                + config.downloadurl + row.pkgrepo + "/os/" + row.pkgarch
+                + row.filename.substr(row.filename.lastIndexOf("/")) + "\n"
         );
         // TODO what if package not found? currently return nothing.
     }, function() {
