@@ -7,11 +7,12 @@ Server scripts
 
 2. `git clone https://github.com/phoenixlzx/repo-arm-server && cd repo-arm-server && npm install && mkdir -p packages`
 
-3. Sync your packages include `pkginfo.db` file in `packages` directory.
+3. Sync your packages in `public/packages` directory.
 
 4. `node app.js`
 
-This application reads the `pkginfo.db` file created by lilydjwg's dbutils, which will include all package info under a directory.
+This application reads the `./pkginfo.db` file created by lilydjwg's [archrepo2](https://geakit.com/lilydjwg/archrepo2), which will 
+include all packages info under a directory.
 
 ###TODO
 
