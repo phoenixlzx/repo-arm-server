@@ -9,7 +9,7 @@ exports.search = function (req, res) {
     // res.send('Welcome to A.R.M - Arch Rollback Machine.'); // Need to be expand later.
     // downgrade search pattern: /?a=$arch&q=%5E$term%24$repos
     // May use our own simpler pattern: /search?arch=$arch&pkgname=$pkgname
-    var db = new sqlite3.Database('./public/packages/pkginfo.db', sqlite3.OPEN_READONLY, function (err) {
+    var db = new sqlite3.Database('./pkginfo.db', sqlite3.OPEN_READONLY, function (err) {
         if (err) return res.end(err);
     });
 
