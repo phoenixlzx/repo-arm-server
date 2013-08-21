@@ -17,7 +17,7 @@ exports.search = function (req, res) {
 //        + '" AND pkgname="' + req.query.pkgname + '";';
 
     // console.log(query);
-    db.each("SELECT * FROM pkginfo WHERE pkgarch=$pkgarch AND pkgname=$pkgname", {
+    db.each("SELECT * FROM pkginfo WHERE pkgarch IN ($pkgarch, 'any') AND pkgname=$pkgname", {
         $pkgarch: req.query.arch,
         $pkgname: req.query.pkgname
     }, function (err, row) {
