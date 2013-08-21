@@ -28,7 +28,7 @@ exports.search = function (req, res) {
         // Query success, return packages to client.
         res.write(
             row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
-                + config.siteurl + "/packages" + row.filename.substr(row.filename.lastIndexOf("/")) + "\n"
+                + config.downloadurl + "/packages" + row.filename.substr(row.filename.lastIndexOf("/")) + "\n"
         );
         // TODO what if package not found? currently return nothing.
     }, function() {
