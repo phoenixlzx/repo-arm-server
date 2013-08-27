@@ -29,7 +29,9 @@ exports.search = function (req, res) {
         res.write(
             row.pkgrepo + "|" + row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
                 + config.downloadurl + row.pkgrepo + "/os/" + req.query.arch
-                + row.filename.substr(row.filename.lastIndexOf("/")) + "\n"
+                + row.filename.substr(row.filename.lastIndexOf("/")) + "|"
+                + row.pkgver.substr(row.pkgver.lastIndexOf("-" - 1))
+                + "\n"
         );
         // TODO what if package not found? currently return nothing.
     }, function() {
