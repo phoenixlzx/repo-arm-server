@@ -32,15 +32,15 @@ For downgrade scripts, use the following search pattern:
 where `arch` can be either `i686` or `x86_64`, and `$pkgname` is _exactly_ the package name(packages under `any` will be automatically added to results).
 
 Server will return results like:
-`pkgrepo|pkgname|arch|pkgver|downloadurl`. Note: if there are multiple versions, it will display as multiple lines.
+`pkgrepo|pkgname|arch|pkgver|downloadurl|pkgrelease`. Note: if there are multiple versions, it will display as multiple lines.
 
 For example:
 query url: `/search?arch=x86_64&pkgname=linux`
 will get:
 ```bash
-core|linux|x86_64|3.9.8-1|http://repo-arm-download.example.com/core/os/x86_64/linux-3.9.8-1-x86_64.pkg.tar.xz
-core|linux|x86_64|3.9.9-1|http://repo-arm-download.example.com/core/os/x86_64/linux-3.9.9-1-x86_64.pkg.tar.xz
-core|linux|x86_64|3.10.1-1|http://repo-arm-download.example.com/core/os/x86_64/linux-3.10.1-1-x86_64.pkg.tar.xz
+core|linux|x86_64|3.9.8-1|http://repo-arm-download.example.com/core/os/x86_64/linux-3.9.8-1-x86_64.pkg.tar.xz|1
+core|linux|x86_64|3.9.9-2|http://repo-arm-download.example.com/core/os/x86_64/linux-3.9.9-1-x86_64.pkg.tar.xz|2
+core|linux|x86_64|3.10.1-1|http://repo-arm-download.example.com/core/os/x86_64/linux-3.10.1-1-x86_64.pkg.tar.xz|1
 ```
 Currently if no package found, server will simply return nothing.
 
