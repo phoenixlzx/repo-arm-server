@@ -44,6 +44,10 @@ core|linux|x86_64|3.10.1-1|http://repo-arm-download.example.com/core/os/x86_64/l
 ```
 Currently if no package found, server will simply return nothing.
 
+**Note**
+
+Special symbol like `+` should be encoded to `%2B`, or it will be trimmed and wont return the correct result.
+
 ### TODO
 
 * Add `repo` field to pkginfo.db so this app will read and return it to downgrade client. [DONE]
