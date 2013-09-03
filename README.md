@@ -47,7 +47,7 @@ Example using cURL:
 * Path: `/find`
 * Variables:
     - `arch` : `i686` || `x86_64`
-    - `pkgname` : _Exact_ package name
+    - `pkgname` : package name criteria
 
 Example using cURL:
 
