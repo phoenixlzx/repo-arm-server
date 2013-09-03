@@ -34,11 +34,8 @@ For downgrade scripts, use the following search APIs:
 * Method: POST
 * Path: `/exact`
 * Variables:
-    - `arch`
-	* `i686`
-	* `x86_64`
-    - `pkgname`
-	* _Exact_ package name
+    - `arch` : `i686` || `x86_64`
+    - `pkgname` : _Exact_ package name
 
 Example using cURL:
 
@@ -49,11 +46,8 @@ Example using cURL:
 * Method: POST
 * Path: `/find`
 * Variables:
-    - `arch`
-	* `i686`
-	* `x86_64`
-    - `pkgname`
-	* _Exact_ package name
+    - `arch` : `i686` || `x86_64`
+    - `pkgname` : _Exact_ package name
 
 Example using cURL:
 
