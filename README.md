@@ -35,10 +35,10 @@ For downgrade scripts, use the following search APIs:
 * Path: `/exact`
 * Variables:
     - `arch`
-	+ `i686`
-	+ `x86_64`
+	* `i686`
+	* `x86_64`
     - `pkgname`
-	+ _Exact_ package name
+	* _Exact_ package name
 
 Example using cURL:
 
@@ -50,10 +50,10 @@ Example using cURL:
 * Path: `/find`
 * Variables:
     - `arch`
-	+ `i686`
-	+ `x86_64`
+	* `i686`
+	* `x86_64`
     - `pkgname`
-	+ _Exact_ package name
+	* _Exact_ package name
 
 Example using cURL:
 
@@ -63,11 +63,6 @@ Example using cURL:
 
 Pattern: `/search?arch=$arch&pkgname=$pkgname`
 where `arch` can be either `i686` or `x86_64`, and `$pkgname` is _exactly_ the package name(packages under `any` will be automatically added to results).
-
-Server will return results like:
-`pkgrepo|pkgname|arch|pkgver|downloadurl|pkgrelease`. Note: if there are multiple versions, it will display as multiple lines.
-
-
 
 Note for GET method: Special symbol like `+` should be encoded to `%2B`, or it will be trimmed and wont return the correct result.
 
