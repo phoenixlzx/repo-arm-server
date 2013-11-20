@@ -1,6 +1,8 @@
 var sqlite3 = require('sqlite3').verbose(),
     config = require('../config');
 
+var pkgs = [];
+
 exports.index = function(req, res){
   res.end('Welcome to A.R.M - Arch Rollback Machine.');
 };
@@ -64,6 +66,7 @@ exports.searchapi = function (req, res) {
     // console.log(pkgarch);
     // console.log(pkgname);
 
+    pkgs = [];
     // console.log(query);
     db.each("SELECT * FROM pkginfo WHERE forarch=$pkgarch AND pkgname=$pkgname ORDER BY ABS(pkgver) DSC;", {
         $pkgarch: pkgarch,
@@ -103,6 +106,7 @@ exports.findapi = function (req, res) {
         pkgname = req.body.pkgname;
     // console.log(pkgarch);
     // console.log(pkgname);
+    pkgs = [];
 
     db.each("SELECT * FROM pkginfo WHERE forarch=$pkgarch AND pkgname LIKE $pkgname ORDER BY ABS(pkgver) DSC;", {
         $pkgarch: pkgarch,
