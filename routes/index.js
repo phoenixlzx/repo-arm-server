@@ -68,7 +68,7 @@ exports.searchapi = function (req, res) {
 
     pkgs = [];
     // console.log(query);
-    db.each("SELECT * FROM pkginfo WHERE forarch=$pkgarch AND pkgname=$pkgname ORDER BY ABS(pkgver) DSC;", {
+    db.each("SELECT * FROM pkginfo WHERE forarch=$pkgarch AND pkgname=$pkgname", {
         $pkgarch: pkgarch,
         $pkgname: pkgname
     }, function (err, row) {
@@ -108,7 +108,7 @@ exports.findapi = function (req, res) {
     // console.log(pkgname);
     pkgs = [];
 
-    db.each("SELECT * FROM pkginfo WHERE forarch=$pkgarch AND pkgname LIKE $pkgname ORDER BY ABS(pkgver) DSC;", {
+    db.each("SELECT * FROM pkginfo WHERE forarch=$pkgarch AND pkgname LIKE $pkgname", {
         $pkgarch: pkgarch,
         $pkgname: pkgname + "%"
     }, function (err, row) {
