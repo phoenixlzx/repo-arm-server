@@ -19,6 +19,8 @@ exports.search = function (req, res) {
     // console.log(query);
     // console.log(req.query.arch);
     // console.log(req.query.pkgname);
+    pkgs = [];
+    
     db.each("SELECT * FROM pkginfo WHERE forarch=$pkgarch AND pkgname=$pkgname", {
         $pkgarch: req.query.arch,
         $pkgname: req.query.pkgname
@@ -27,6 +29,13 @@ exports.search = function (req, res) {
             return (err);
         }
         // Query success, return packages to client.
+        pkgs.push(row.pkgrepo + "|" + row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
+                + config.downloadurl + row.pkgrepo + "/os/" + req.query.arch
+                + row.filename.substr(row.filename.lastIndexOf("/")) + "|"
+                + row.pkgver.substr(row.pkgver.lastIndexOf("-" - 1))
+                + "\n");
+        pkgs = pkgs.naturalSort().reverse();
+        /*
         res.write(
             row.pkgrepo + "|" + row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
                 + config.downloadurl + row.pkgrepo + "/os/" + req.query.arch
@@ -34,10 +43,12 @@ exports.search = function (req, res) {
                 + row.pkgver.substr(row.pkgver.lastIndexOf("-" - 1))
                 + "\n"
         );
+        */
         // TODO what if package not found? currently return nothing.
     }, function() {
-        res.end();
+        res.end(pkgs.toString().replace(/,/g, ''));
     });
+
 };
 
 // TODO Duplicated code, improvement needed.
@@ -54,7 +65,7 @@ exports.searchapi = function (req, res) {
     // console.log(pkgname);
 
     // console.log(query);
-    db.each("SELECT * FROM pkginfo WHERE forarch=$pkgarch AND pkgname=$pkgname", {
+    db.each("SELECT * FROM pkginfo WHERE forarch=$pkgarch AND pkgname=$pkgname ORDER BY ABS(pkgver) DSC;", {
         $pkgarch: pkgarch,
         $pkgname: pkgname
     }, function (err, row) {
@@ -62,6 +73,13 @@ exports.searchapi = function (req, res) {
             return (err);
         }
         // Query success, return packages to client.
+        pkgs.push(row.pkgrepo + "|" + row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
+                + config.downloadurl + row.pkgrepo + "/os/" + req.query.arch
+                + row.filename.substr(row.filename.lastIndexOf("/")) + "|"
+                + row.pkgver.substr(row.pkgver.lastIndexOf("-" - 1))
+                + "\n");
+        pkgs = pkgs.naturalSort().reverse();
+        /*
         res.write(
             row.pkgrepo + "|" + row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
                 + config.downloadurl + row.pkgrepo + "/os/" + pkgarch
@@ -69,8 +87,9 @@ exports.searchapi = function (req, res) {
                 + row.pkgver.substr(row.pkgver.lastIndexOf("-" - 1))
                 + "\n"
         );
+        */
     }, function() {
-        res.end();
+        res.end(pkgs.toString().replace(/,/g, ''));
     });
 };
 
@@ -85,7 +104,7 @@ exports.findapi = function (req, res) {
     // console.log(pkgarch);
     // console.log(pkgname);
 
-    db.each("SELECT * FROM pkginfo WHERE forarch=$pkgarch AND pkgname LIKE $pkgname", {
+    db.each("SELECT * FROM pkginfo WHERE forarch=$pkgarch AND pkgname LIKE $pkgname ORDER BY ABS(pkgver) DSC;", {
         $pkgarch: pkgarch,
         $pkgname: pkgname + "%"
     }, function (err, row) {
@@ -93,6 +112,13 @@ exports.findapi = function (req, res) {
             return (err);
         }
         // Query success, return packages to client.
+        pkgs.push(row.pkgrepo + "|" + row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
+                + config.downloadurl + row.pkgrepo + "/os/" + req.query.arch
+                + row.filename.substr(row.filename.lastIndexOf("/")) + "|"
+                + row.pkgver.substr(row.pkgver.lastIndexOf("-" - 1))
+                + "\n");
+        pkgs = pkgs.naturalSort().reverse();
+        /*
         res.write(
             row.pkgrepo + "|" + row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
                 + config.downloadurl + row.pkgrepo + "/os/" + pkgarch
@@ -100,7 +126,29 @@ exports.findapi = function (req, res) {
                 + row.pkgver.substr(row.pkgver.lastIndexOf("-" - 1))
                 + "\n"
         );
+        */
     }, function() {
-        res.end();
+        res.end(pkgs.toString().replace(/,/g, ''));
     });
 };
+
+// Natural sort function from 
+// http://stackoverflow.com/questions/4373018/sort-array-of-numeric-alphabetical-elements-natural-sort
+Array.prototype.naturalSort= function(){
+    var a, b, a1, b1, rx=/(\d+)|(\D+)/g, rd=/\d+/;
+    return this.sort(function(as, bs){
+        a= String(as).toLowerCase().match(rx);
+        b= String(bs).toLowerCase().match(rx);
+        while(a.length && b.length){
+            a1= a.shift();
+            b1= b.shift();
+            if(rd.test(a1) || rd.test(b1)){
+                if(!rd.test(a1)) return 1;
+                if(!rd.test(b1)) return -1;
+                if(a1!= b1) return a1-b1;
+            }
+            else if(a1!= b1) return a1> b1? 1: -1;
+        }
+        return a.length- b.length;
+    });
+}
