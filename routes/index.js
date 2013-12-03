@@ -77,7 +77,7 @@ exports.searchapi = function (req, res) {
         }
         // Query success, return packages to client.
         pkgs.push(row.pkgrepo + "|" + row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
-                + config.downloadurl + row.pkgrepo + "/os/" + req.query.arch
+                + config.downloadurl + row.pkgrepo + "/os/" + pkgarch
                 + row.filename.substr(row.filename.lastIndexOf("/")) + "|"
                 + row.pkgver.substr(row.pkgver.lastIndexOf("-" - 1))
                 + "\n");
@@ -117,7 +117,7 @@ exports.findapi = function (req, res) {
         }
         // Query success, return packages to client.
         pkgs.push(row.pkgrepo + "|" + row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
-                + config.downloadurl + row.pkgrepo + "/os/" + req.query.arch
+                + config.downloadurl + row.pkgrepo + "/os/" + pkgarch
                 + row.filename.substr(row.filename.lastIndexOf("/")) + "|"
                 + row.pkgver.substr(row.pkgver.lastIndexOf("-" - 1))
                 + "\n");
