@@ -108,9 +108,9 @@ exports.findapi = function (req, res) {
     // console.log(pkgname);
     pkgs = [];
 
-    db.each("SELECT * FROM pkginfo WHERE forarch=$pkgarch AND pkgname LIKE $pkgname", {
+    db.each("SELECT * FROM pkginfo WHERE forarch=$pkgarch AND pkgname LIKE %$pkgname%", {
         $pkgarch: pkgarch,
-        $pkgname: pkgname + "%"
+        $pkgname: pkgname
     }, function (err, row) {
         if(err) {
             return (err);
