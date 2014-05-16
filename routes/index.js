@@ -198,7 +198,7 @@ router.get('/archive/:year/:month/:day/:repo/os/:pkgarch/:pkgfile', function(req
         if (req.params.pkgfile.indexOf('.db')) {
             return res.sendfile(config.archivepath + '/' + req.params.year + '/'
                 + req.params.month + '/' + req.params.day + '/' + req.params.repo +
-                '/os/' + req.params.pkgarch + req.params.pkgfile);
+                '/os/' + req.params.pkgarch + '/' + req.params.pkgfile);
         } else {
             res.sendfile(config.pkgpath + req.params.repo +
                 '/os/' + req.params.pkgarch + '/' + req.params.pkgfile);
