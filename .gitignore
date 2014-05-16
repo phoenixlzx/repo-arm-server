@@ -1,5 +1,7 @@
 .idea/
 node_modules/
+packages/
+archive/
 pkginfo.db
 config.js
 repo-arm.nginx.conf
