@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
+<head>
+    <title>Arch Rollback Machine</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+</head>
+<body>
+<h1>Welcome to Arch Rollback Machine</h1>
+<p>
+    Please install <a href="https://aur.archlinux.org/packages/downgrade/" target="_blank">downgrade</a>
+    or <a href="https://aur.archlinux.org/packages/downgrader/" target="_blank">downgrader</a> to use our API service.
+</p>
+<p>
+    Or you may want to visit our <a href="/archive">package archive</a>.
+</p>
+<p>
+    Please note archive will not show packages currently, this function is to check whether we have archived the packages in specific time.
+</p>
+<p>
+    If you want to upgrade/downgrade to a specific day, use the following url pattern as your repo address.
+</p>
+<pre><code>
+http://repo-arm.archlinuxcn.org/archive/year/month/day/repo/arch
+</code>
+</pre>
+<p>
+e.g., for packages in [core] in the day of 2014/04/30, use <code>http://repo-arm.archlinuxcn.org/archive/2014/04/30/core/$arch</code>
+</p>
+</body>
 </html>

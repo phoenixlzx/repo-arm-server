@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+var debug = require('debug')('repo-arm-server');
+var app = require('../app');
+var config = require('../config');
+
+app.set('port', process.env.PORT || config.bindPort || 3000);
+
+var server = app.listen(app.get('port'), config.bindAddress || '::', function() {
+    debug('Express server listening on port ' + server.address().port);
+});

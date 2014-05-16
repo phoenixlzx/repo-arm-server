@@ -1,14 +1,19 @@
 {
-  "name": "repo-arm",
-  "version": "0.0.2",
-  "private": true,
-  "scripts": {
-    "start": "node app.js"
-  },
-  "dependencies": {
-    "express": "3.3.4",
-    "ejs": "*",
-    "less-middleware": "*",
-    "sqlite3": "*"
-  }
+    "name": "repo-arm-server",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/repo-arm-server"
+    },
+    "dependencies": {
+        "express": "~4.0.0",
+        "static-favicon": "~1.0.0",
+        "morgan": "~1.0.0",
+        "cookie-parser": "~1.0.1",
+        "body-parser": "~1.0.0",
+        "debug": "~0.7.4",
+        "ejs": "*",
+        "async": "*",
+        "sqlite3": "*"
+    }
 }

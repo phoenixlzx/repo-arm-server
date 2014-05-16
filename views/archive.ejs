@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arch Rollback Machine / Archive</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1>Arch Rollback Machine / Package archive</h1>
+<div>
+    <ul style="list-style: none;">
+        <% for(year in files) { %>
+        <li>
+            <h3><%= year %> /</h3>
+            <ul style="list-style: none;">
+                <% for (month in files[year]) { %>
+                <li>
+                    <h4><%= month %> / </h4>
+                    <ul style="list-style: none;">
+                        <li>
+                            <% files[year][month].forEach(function(day) { %>
+                            <a href="/archive/<%= year %>/<%= month %>/<%= day %>"><%= day %></a>&nbsp;
+                            <% }) %>
+                        </li>
+                    </ul>
+                </li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+    </ul>
+</div>
+</body>
+</html>

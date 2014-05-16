@@ -27,7 +27,7 @@ Nginx is strongly recommended for handle HTTP requests. `repo-arm.nginx.conf.exa
 
 ### Downgrade
 
-For downgrade scripts, use the following search APIs:
+* For downgrade scripts, use the following search APIs:
 
 **Exact package search**
 
@@ -68,12 +68,21 @@ Server will return results like:
 For example:
 query `arch=x86_64` and `pkgname=linux` to `/exact`
 will get:
+
 ```bash
 core|linux|x86_64|3.9.8-1|http://repo-arm-download.example.com/core/os/x86_64/linux-3.9.8-1-x86_64.pkg.tar.xz|1
 core|linux|x86_64|3.9.9-2|http://repo-arm-download.example.com/core/os/x86_64/linux-3.9.9-1-x86_64.pkg.tar.xz|2
 core|linux|x86_64|3.10.1-1|http://repo-arm-download.example.com/core/os/x86_64/linux-3.10.1-1-x86_64.pkg.tar.xz|1
 ```
+
 Currently if no package found, server will simply return nothing.
+
+
+* For users seek for packages repo in a specific day, use the following url pattern as your repo address.
+
+`http://repo-arm.archlinuxcn.org/archive/year/month/day/repo/arch`
+
+e.g., for packages in `[core]` in the day of 2014/04/30, use `http://repo-arm.archlinuxcn.org/archive/2014/04/30/core/$arch`
 
 ### TODO
 
