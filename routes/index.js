@@ -195,7 +195,7 @@ router.get('/archive/:year/:month/:day/:repo/os/:pkgarch/:pkgfile', function(req
         test2.test(req.params.month) &&
         test2.test(req.params.day)) {
         // test passed
-        if (req.params.pkgfile.indexOf('.db')) {
+        if (req.params.pkgfile.indexOf('.db') !== -1) {
             return res.sendfile(config.archivepath + '/' + req.params.year + '/'
                 + req.params.month + '/' + req.params.day + '/' + req.params.repo +
                 '/os/' + req.params.pkgarch + '/' + req.params.pkgfile);
