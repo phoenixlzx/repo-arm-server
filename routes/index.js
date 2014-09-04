@@ -35,7 +35,7 @@ router.get('/search', function(req, res) {
         pkgs.push(row.pkgrepo + "|" + row.pkgname + "|" + row.pkgarch + "|" + row.pkgver + "|"
             + config.downloadurl + row.pkgrepo + "/os/" + req.query.arch
             + row.filename.substr(row.filename.lastIndexOf("/")) + "|"
-            + row.pkgver.substr(row.pkgver.lastIndexOf("-" - 1))
+            + row.pkgver.slice(row.pkgver.lastIndexOf("-" + 1))
             + "\n");
         pkgs = pkgs.naturalSort().reverse();
         /*
